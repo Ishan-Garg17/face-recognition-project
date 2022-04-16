@@ -1,13 +1,8 @@
 .App {
+  background: linear-gradient(to right, rgb(255, 128, 244), rgb(117, 227, 255));
+
   text-align: center;
 }
 .color{
   background: linear-gradient(to right, #77c2ff, rgb(255, 122, 244));
-}
-.particles{
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
 }

@@ -4,111 +4,39 @@ import Logo from './Components/Logo';
 import ImageLinkForm from './Components/ImageLinkForm';
 import { Component } from 'react';
 import Rank from './Components/Rank';
-import Particles from "react-tsparticles";
-import { loadFull } from "react-tsparticles";
-const particlesInit = async (main) => {
-  console.log(main);
+import Clarifai from 'clarifai'
 
-  // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
-  // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-  // starting from v2 you can add only the features you need reducing the bundle size
-  await loadFull(main);
-};
-
-const particlesLoaded = (container) => {
-  console.log(container);
-};
+const app = new Clarifai.App({
+  apiKey: '034b49fff994465a944aa126a4c9ed21'
+  
+});
 class App extends Component {
   constructor(){
     super();
     this.state = {
-
+      input: [],
     }
   }
+  onChangeInput = (event)=>{
+    console.log(event.target.value)
+  } 
+  onClicked = ()=>{
+    console.log("Button Clicked")
+    app.models.predict(
+      '53e1df302c079b3db8a0a36033ed2d15',
+      this.state.input)
+    .then(response => {
+      console.log('hi', response);
+  });
+}
+  // 
   render() {
     return (
       <div className="App">
-      <Particles className='particles'
-      id="tsparticles"
-      init={particlesInit}
-      loaded={particlesLoaded}
-      options={{
-        background: {
-          color: {
-            value: "#0d47a1",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: true,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#ffffff",
-          },
-          links: {
-            color: "#ffffff",
-            distance: 50,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          collisions: {
-            enable: true,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: true,
-            speed: 10,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 10, max: 50 },
-          },
-        },
-        detectRetina: true,
-      }}
-    />
         <Navigation />
         <Logo/>
         <Rank/>
-        <ImageLinkForm/>
+        <ImageLinkForm buttonClicked={this.onClicked} searchChange={this.onChangeInput}/>
       </div>
     );
   }
