@@ -4,5 +4,6 @@
   text-align: center;
 }
 .color{
-  background: linear-gradient(to right, #77c2ff, rgb(255, 122, 244));
+background: linear-gradient(to right, rgb(255, 128, 244), rgb(117, 227, 255));
+  
 }
