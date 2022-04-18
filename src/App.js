@@ -7,6 +7,8 @@ import Rank from './Components/Rank';
 import Clarifai from 'clarifai'
 import FaceRecognition from './Components/FaceRecognition';
 import Signin from './Components/Signin';
+import Register from './Components/Register';
+
 
 const app = new Clarifai.App({
   apiKey: '034b49fff994465a944aa126a4c9ed21'
@@ -14,40 +16,66 @@ const app = new Clarifai.App({
 
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       input: '',
       image: '',
-      route: 'signin'
+      route: 'signin',
+      'isSignedin': false
     }
   }
-  onChangeInput = (event)=>{
-    this.setState( {input: event.target.value})
-  } 
-  onClicked = ()=>{
-    this.setState({image: this.state.input})
-}
-onRouteChange = (route)=>{
-      this.setState({route : route})
-}
+  
+  onChangeInput = (event) => {
+    this.setState({ input: event.target.value })
+  }
+
+  onClicked = () => {
+    this.setState({ image: this.state.input })
+  }
+
+  onRouteChange = (route) => {
+    
+    if (route == 'home') {
+      this.setState({ isSignedin: true });
+    }
+    else {
+      this.setState({ isSignedin: false });
+    }
+    this.setState({ route: route })
+  
+  }
+
+
 
   render() {
-    return (
-      <div className="App">
-        <Navigation onRouteChange={this.onRouteChange}/>
-        {this.state.route === 'signin'?
-        <Signin onRouteChange={this.onRouteChange}/>
-        :
-        <div>
-          <Logo/>
-        <Rank/>
-        <ImageLinkForm buttonClicked={this.onClicked} searchChange={this.onChangeInput}/>
-        <FaceRecognition imageURl={this.state.image}/>
+    if (this.state.route === 'home') {
+      return (
+        <div className="App">
+          <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
+          <Logo />
+          <Rank />
+          <ImageLinkForm buttonClicked={this.onClicked} searchChange={this.onChangeInput} />
+          <FaceRecognition imageURl={this.state.image} />
         </div>
-        }
-      </div>
-    );
+      )
+    }
+    else if (this.state.route == 'signin') {
+      return (
+        <div className="App">
+          <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
+          <Signin onRouteChange={this.onRouteChange} />
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="App">
+          <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
+          <Register onRouteChange={this.onRouteChange} />
+        </div>
+      )
+    }
   }
 }
 
