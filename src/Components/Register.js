@@ -58,8 +58,6 @@ class Register extends Component{
 
     render(){
 
-        const {onRouteChange} = this.props;
-
         return (
             <div className=" dark-grey ba  w-80-m w-45-l mw6 br4 shadow-3 center mt5">
                 <main className="pa4 black-80">
