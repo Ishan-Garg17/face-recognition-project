@@ -10,9 +10,9 @@ import Signin from './Components/Signin';
 import Register from './Components/Register';
 
 
-const app = new Clarifai.App({
-  apiKey: '034b49fff994465a944aa126a4c9ed21'
-});
+// const app = new Clarifai.App({
+//   apiKey: '034b49fff994465a944aa126a4c9ed21'
+// });
 
 
 class App extends Component {
@@ -26,6 +26,14 @@ class App extends Component {
     }
   }
   
+  componentDidMount(){
+    fetch('http://localhost:3002/')
+        .then(res => res.json())
+        .then(data => console.log(data))
+}
+
+
+
   onChangeInput = (event) => {
     this.setState({ input: event.target.value })
   }
