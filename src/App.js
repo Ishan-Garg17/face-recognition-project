@@ -100,6 +100,6 @@ loadUser =(loadedUser)=>{
     }
   }
   
-}
+} 
 
 export default App;
