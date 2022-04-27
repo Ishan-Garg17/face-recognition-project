@@ -76,7 +76,7 @@ loadUser =(loadedUser)=>{
         <div className="App">
           <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
           <Logo />
-          <Rank />
+          <Rank name={this.state.user.name} Rank={this.state.user.entries} />
           <ImageLinkForm buttonClicked={this.onClicked} searchChange={this.onChangeInput} />
           <FaceRecognition imageURl={this.state.image} />
         </div>

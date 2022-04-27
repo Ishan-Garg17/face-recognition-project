@@ -46,9 +46,15 @@ class Register extends Component{
             
             //Fetch Api is Asynchronous -> make notes about fetch API also
         }).then(res => res.json()).then((user) => {
-            if(user){
+            if(user.id){
+                
+                //We are Checking with user.id because if our server will respond in any other error string message then also our user object will be creeated but with undefined values but it will evaluate the if(user) to be true but user.id or user.name etc will evaluate to False as if(undefined) is false
+
 
                 this.props.loadUser(user)
+
+                // Why we are using loadUser? -: because we need to store the registered user or signined user somewhere in our central APP SO THAT WE CAN load our frontend according to the loadedUser(loggedin user)
+
                 this.props.onRouteChange('home')
             
             }

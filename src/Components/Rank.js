@@ -1,13 +1,13 @@
 import { Fragment } from "react";
-const Rank = ()=>{
+const Rank = ({name,Rank})=>{
 
     return(
         <Fragment>
         <div className="f3 white">
-            {'Ishan, Your Current Rank is.....'}
+            {`${name}, Your Current Entry Count is.....`}
         </div>
         <div className="f1 white">
-            {'#1'}
+            {`#${Rank}`}
         </div>
         </Fragment>
 
