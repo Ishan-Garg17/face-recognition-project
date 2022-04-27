@@ -44,8 +44,7 @@ loadUser =(loadedUser)=>{
       entries: loadedUser.entries
     }
   })
-  // console.log(this.state.user)
-  // console.log(loadedUser)
+  console.log('loadeduser is: ',loadedUser  )
 }
 
 
@@ -87,7 +86,7 @@ loadUser =(loadedUser)=>{
       return (
         <div className="App">
           <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
-          <Signin onRouteChange={this.onRouteChange} />
+          <Signin loadUser = {this.loadUser} onRouteChange={this.onRouteChange} />
         </div>
       )
     }

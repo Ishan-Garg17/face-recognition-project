@@ -24,9 +24,9 @@ class Register extends Component{
 
     onSubmit = () => {
 
-        if((this.state.name || this.state.password || this.state.email) === ''){
-            // Error()
-            console.log('Error')
+        if((this.state.name && this.state.password && this.state.email) === ''){
+
+            console.log('Error registering the user')
         }
         else{
         fetch('http://localhost:3002/register' , {

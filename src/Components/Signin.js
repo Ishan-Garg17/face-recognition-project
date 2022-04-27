@@ -22,7 +22,7 @@ class Signin extends Component{
     }
     
     onSubmit = () => {
-        let response = 'intial(fetching in prog'
+
         fetch('http://localhost:3002/signin' , {
 
             //It will describe what the request will be
@@ -38,11 +38,10 @@ class Signin extends Component{
             //We cant send javaScript object to the backend so we need to parse our response to JSON using JSON.stringify and at the backend we have already used a middleware which will parse the json to javaScript object for us\
             
             //Fetch Api is Asynchronous -> make notes about fetch API also
-        }).then(res => res.json()).then(data => {
-            response = data;
-            if(data === 'Success'){
-                console.log('response -: ',response)
+        }).then(res => res.json()).then(user => {
+            if(user){
                 this.props.onRouteChange('home')
+                this.props.loadUser(user)
             
             }
         }).catch(err => console.log(err))
