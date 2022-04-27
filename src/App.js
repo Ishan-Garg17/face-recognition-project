@@ -22,16 +22,31 @@ class App extends Component {
       input: '',
       image: '',
       route: 'signin',
-      'isSignedin': false
+      isSignedin: false,
+      user: {
+        id: '',
+        name: "",
+        email: "",
+        password: "",
+        entries: 0
+      }
+
     }
   }
   
-  componentDidMount(){
-    fetch('http://localhost:3002/')
-        .then(res => res.json())
-        .then(data => console.log(data))
+loadUser =(loadedUser)=>{
+  this.setState({
+    user: {
+      id: loadedUser.id,
+      name: loadedUser.name,
+      email: loadedUser.email,
+      password: loadedUser.password,
+      entries: loadedUser.entries
+    }
+  })
+  // console.log(this.state.user)
+  // console.log(loadedUser)
 }
-
 
 
   onChangeInput = (event) => {
@@ -80,11 +95,12 @@ class App extends Component {
       return (
         <div className="App">
           <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
-          <Register onRouteChange={this.onRouteChange} />
+          <Register loadUser = {this.loadUser} onRouteChange={this.onRouteChange} />
         </div>
       )
     }
   }
+  
 }
 
 export default App;
