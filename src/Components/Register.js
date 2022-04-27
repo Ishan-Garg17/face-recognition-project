@@ -46,6 +46,7 @@ class Register extends Component{
             
             //Fetch Api is Asynchronous -> make notes about fetch API also
         }).then(res => res.json()).then((user) => {
+            console.log(user)
             if(user.id){
                 
                 //We are Checking with user.id because if our server will respond in any other error string message then also our user object will be creeated but with undefined values but it will evaluate the if(user) to be true but user.id or user.name etc will evaluate to False as if(undefined) is false
